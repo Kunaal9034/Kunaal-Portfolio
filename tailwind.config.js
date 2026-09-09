@@ -18,11 +18,13 @@ export default {
           600: '#334155',
         },
         cyber: {
-          emerald: '#10b981',
-          teal: '#14b8a6',
-          cyan: '#06b6d4',
+          blue: '#3b82f6',
           indigo: '#6366f1',
           violet: '#8b5cf6',
+          cyan: '#06b6d4',
+          amber: '#f59e0b',
+          emerald: '#10b981',
+          teal: '#14b8a6',
         }
       },
       fontFamily: {

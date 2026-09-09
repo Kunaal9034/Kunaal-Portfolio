@@ -15,9 +15,12 @@ export const projectsData = [
     ],
     stats: [
       { label: "Rooms Managed", value: "50+" },
-      { label: "Reservations Handled", value: "200+" },
-      { label: "Error Reduction", value: "~40%" },
-      { label: "Redundancy Cut", value: "60%" }
+      { label: "Reservations", value: "200+" },
+      { label: "Manual Booking Errors", value: "~40%", detail: "Reduction" },
+      { label: "Database Tables", value: "4", detail: "Normalized Schema" },
+      { label: "Redundancy", value: "~60%", detail: "Reduction" },
+      { label: "Query Speed", value: "~35%", detail: "Improvement" },
+      { label: "Test Transactions", value: "100+", detail: "Zero Leaks" }
     ],
     links: {
       github: "", // Configurable: Set repository URL here

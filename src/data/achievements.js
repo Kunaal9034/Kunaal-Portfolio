@@ -5,7 +5,7 @@ export const achievementsData = [
     subtitle: "Competitive Programming & Problem Solving",
     featured: true,
     metric: "500+",
-    metricSubtext: "Algorithmic Challenges Solved",
+    metricSubtext: "Across multiple coding platforms",
     description: "Solved 500+ Data Structure and Algorithm problems across multiple coding platforms, demonstrating persistent practice and strong problem-solving skills in data structures and algorithmic complexity.",
     accent: "emerald",
     icon: "Award"

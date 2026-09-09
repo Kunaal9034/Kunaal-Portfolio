@@ -69,7 +69,8 @@ export default function BackgroundCanvas() {
         height * 0.2,
         width * 0.45
       );
-      grad1.addColorStop(0, isDark ? 'rgba(16, 185, 129, 0.04)' : 'rgba(16, 185, 129, 0.035)');
+      grad1.addColorStop(0, isDark ? 'rgba(59, 130, 246, 0.04)' : 'rgba(59, 130, 246, 0.055)');
+      grad1.addColorStop(0.5, isDark ? 'rgba(99, 102, 241, 0.02)' : 'rgba(14, 165, 233, 0.035)');
       grad1.addColorStop(1, 'transparent');
       ctx.fillStyle = grad1;
       ctx.fillRect(0, 0, width, height);
@@ -82,7 +83,7 @@ export default function BackgroundCanvas() {
         height * 0.7,
         width * 0.45
       );
-      grad2.addColorStop(0, isDark ? 'rgba(6, 182, 212, 0.04)' : 'rgba(6, 182, 212, 0.035)');
+      grad2.addColorStop(0, isDark ? 'rgba(139, 92, 246, 0.035)' : 'rgba(139, 92, 246, 0.045)');
       grad2.addColorStop(1, 'transparent');
       ctx.fillStyle = grad2;
       ctx.fillRect(0, 0, width, height);
@@ -112,8 +113,8 @@ export default function BackgroundCanvas() {
         ctx.beginPath();
         ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
         ctx.fillStyle = isDark
-          ? `rgba(16, 185, 129, ${node.baseAlpha})`
-          : `rgba(5, 150, 105, ${node.baseAlpha * 1.15})`;
+          ? `rgba(99, 102, 241, ${node.baseAlpha * 0.85})`
+          : `rgba(59, 130, 246, ${node.baseAlpha * 1.05})`;
         ctx.fill();
 
         // Connect nearby nodes (neural network web)
@@ -129,8 +130,8 @@ export default function BackgroundCanvas() {
             ctx.moveTo(node.x, node.y);
             ctx.lineTo(nodeB.x, nodeB.y);
             ctx.strokeStyle = isDark
-              ? `rgba(6, 182, 212, ${alpha})`
-              : `rgba(2, 132, 199, ${alpha})`;
+              ? `rgba(59, 130, 246, ${alpha})`
+              : `rgba(99, 102, 241, ${alpha})`;
             ctx.lineWidth = 0.8;
             ctx.stroke();
           }
@@ -143,8 +144,8 @@ export default function BackgroundCanvas() {
           ctx.moveTo(node.x, node.y);
           ctx.lineTo(mouse.x, mouse.y);
           ctx.strokeStyle = isDark
-            ? `rgba(16, 185, 129, ${alpha})`
-            : `rgba(5, 150, 105, ${alpha})`;
+            ? `rgba(6, 182, 212, ${alpha})`
+            : `rgba(2, 132, 199, ${alpha})`;
           ctx.lineWidth = 1;
           ctx.stroke();
         }

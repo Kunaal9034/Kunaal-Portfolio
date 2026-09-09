@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Send, CheckCircle2, AlertCircle, Copy, Check, Loader2, RefreshCw } from 'lucide-react';
 import { personalData } from '../data/personal';
 import { GithubIcon, LinkedinIcon, LeetCodeIcon, CodolioIcon } from './BrandIcons';
+import MagneticButton from './MagneticButton';
+import useScrollReveal from '../hooks/useScrollReveal';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -14,6 +16,9 @@ export default function Contact() {
   const [status, setStatus] = useState('idle'); // 'idle' | 'loading' | 'success' | 'error'
   const [errorMessage, setErrorMessage] = useState('');
   const [copiedEmail, setCopiedEmail] = useState(false);
+
+  const [headerRef, headerRevealed] = useScrollReveal({ threshold: 0.1 });
+  const [gridRef, gridRevealed] = useScrollReveal({ threshold: 0.08 });
 
   const socialIcons = {
     Github: GithubIcon,
@@ -116,46 +121,46 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 relative z-10 border-t border-slate-200/80 dark:border-white/5 bg-slate-100/40 dark:bg-dark-950/40 transition-colors">
+    <section id="contact" className="py-24 sm:py-28 lg:py-32 relative z-10 border-t border-slate-200/80 dark:border-white/5 bg-slate-50/60 dark:bg-dark-950/40 light-tint-contact transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono uppercase tracking-wider text-emerald-700 dark:text-cyber-emerald bg-emerald-50 dark:bg-cyber-emerald/10 border border-emerald-300/80 dark:border-cyber-emerald/20 transition-colors">
-            <Mail className="w-3.5 h-3.5" />
-            Get In Touch
+        <div ref={headerRef} className={`text-center max-w-2xl mx-auto mb-16 space-y-3 reveal-init ${headerRevealed ? 'revealed' : ''}`}>
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-mono uppercase tracking-wider text-blue-700 dark:text-cyber-blue bg-blue-50/90 dark:bg-cyber-blue/10 border border-blue-200 dark:border-cyber-blue/20 transition-colors shadow-sm shadow-blue-500/5">
+            <Mail className="w-3.5 h-3.5 text-blue-600 dark:text-cyber-blue" />
+            <span>Get In Touch</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-display font-bold text-slate-900 dark:text-white tracking-tight transition-colors">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-slate-900 dark:text-white tracking-tight transition-colors">
             Contact & Collaboration
           </h2>
-          <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base transition-colors">
+          <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base leading-relaxed transition-colors">
             Feel free to reach out for software engineering inquiries, AI/ML discussions, or technical collaboration.
           </p>
         </div>
 
         {/* Contact Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+        <div ref={gridRef} className={`grid grid-cols-1 lg:grid-cols-12 gap-10 items-start reveal-init ${gridRevealed ? 'revealed' : ''}`}>
           
           {/* Left Column: Direct Info & Social Placeholders */}
           <div className="lg:col-span-5 space-y-6">
             
-            <div className="glass-card rounded-2xl p-7 space-y-6 border border-slate-200/80 dark:border-white/5">
+            <div className="glass-card rounded-2xl p-7 space-y-6 border border-slate-200/80 dark:border-white/5 bg-gradient-to-br from-white/95 via-blue-50/15 to-cyan-50/15 dark:bg-dark-900/60 shadow-lg shadow-blue-500/5">
               <h3 className="text-xl font-display font-bold text-slate-900 dark:text-white transition-colors">
                 Contact Information
               </h3>
               
               <div className="space-y-4 text-sm">
                 {/* Email Item */}
-                <div className="flex items-start justify-between p-3.5 rounded-xl bg-slate-100/90 dark:bg-dark-900/80 border border-slate-200 dark:border-white/5 group transition-colors">
+                <div className="flex items-start justify-between p-3.5 rounded-xl bg-blue-50/50 dark:bg-dark-900/80 border border-blue-200/70 dark:border-white/5 group transition-colors">
                   <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 rounded-lg bg-emerald-50 dark:bg-cyber-emerald/10 border border-emerald-300/80 dark:border-cyber-emerald/30 flex items-center justify-center text-emerald-600 dark:text-cyber-emerald transition-colors">
+                    <div className="w-9 h-9 rounded-lg bg-blue-100/70 dark:bg-blue-950/40 border border-blue-300/80 dark:border-blue-800/40 flex items-center justify-center text-blue-700 dark:text-blue-400 transition-colors">
                       <Mail className="w-4 h-4" />
                     </div>
                     <div>
                       <div className="text-xs text-slate-500 dark:text-slate-400 font-mono">Email Address</div>
                       <a
                         href={`mailto:${personalData.contact.email}`}
-                        className="font-medium text-slate-900 dark:text-white hover:text-emerald-600 dark:hover:text-cyber-emerald transition-colors"
+                        className="font-medium text-slate-900 dark:text-white hover:text-blue-700 dark:hover:text-cyan-400 transition-colors"
                       >
                         {personalData.contact.email}
                       </a>
@@ -169,20 +174,20 @@ export default function Contact() {
                     title="Copy email to clipboard"
                     aria-label="Copy email"
                   >
-                    {copiedEmail ? <Check className="w-4 h-4 text-emerald-600 dark:text-cyber-emerald" /> : <Copy className="w-4 h-4" />}
+                    {copiedEmail ? <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400" /> : <Copy className="w-4 h-4" />}
                   </button>
                 </div>
 
                 {/* Phone Item */}
-                <div className="flex items-center gap-3 p-3.5 rounded-xl bg-slate-100/90 dark:bg-dark-900/80 border border-slate-200 dark:border-white/5 transition-colors">
-                  <div className="w-9 h-9 rounded-lg bg-cyan-50 dark:bg-cyber-cyan/10 border border-cyan-300/80 dark:border-cyber-cyan/30 flex items-center justify-center text-cyan-600 dark:text-cyber-cyan transition-colors">
+                <div className="flex items-center gap-3 p-3.5 rounded-xl bg-cyan-50/50 dark:bg-dark-900/80 border border-cyan-200/70 dark:border-white/5 transition-colors">
+                  <div className="w-9 h-9 rounded-lg bg-cyan-100/70 dark:bg-cyber-cyan/10 border border-cyan-300/80 dark:border-cyber-cyan/30 flex items-center justify-center text-cyan-700 dark:text-cyber-cyan transition-colors">
                     <Phone className="w-4 h-4" />
                   </div>
                   <div>
                     <div className="text-xs text-slate-500 dark:text-slate-400 font-mono">Phone Number</div>
                     <a
                       href={`tel:${personalData.contact.phone.replace(/\s+/g, '')}`}
-                      className="font-medium text-slate-900 dark:text-white hover:text-cyan-700 dark:hover:text-cyber-cyan transition-colors"
+                      className="font-medium text-slate-900 dark:text-white hover:text-cyan-800 dark:hover:text-cyber-cyan transition-colors"
                     >
                       {personalData.contact.phone}
                     </a>
@@ -190,8 +195,8 @@ export default function Contact() {
                 </div>
 
                 {/* Location Item */}
-                <div className="flex items-center gap-3 p-3.5 rounded-xl bg-slate-100/90 dark:bg-dark-900/80 border border-slate-200 dark:border-white/5 transition-colors">
-                  <div className="w-9 h-9 rounded-lg bg-indigo-50 dark:bg-cyber-indigo/10 border border-indigo-300/80 dark:border-cyber-indigo/30 flex items-center justify-center text-indigo-600 dark:text-cyber-indigo transition-colors">
+                <div className="flex items-center gap-3 p-3.5 rounded-xl bg-indigo-50/50 dark:bg-dark-900/80 border border-indigo-200/70 dark:border-white/5 transition-colors">
+                  <div className="w-9 h-9 rounded-lg bg-indigo-100/70 dark:bg-cyber-indigo/10 border border-indigo-300/80 dark:border-cyber-indigo/30 flex items-center justify-center text-indigo-700 dark:text-cyber-indigo transition-colors">
                     <MapPin className="w-4 h-4" />
                   </div>
                   <div>
@@ -205,7 +210,7 @@ export default function Contact() {
             </div>
 
             {/* Social & Coding Platform Profiles */}
-            <div className="glass-card rounded-2xl p-7 space-y-4 border border-slate-200/80 dark:border-white/5">
+            <div className="glass-card rounded-2xl p-7 space-y-4 border border-slate-200/80 dark:border-white/5 bg-gradient-to-br from-white/95 via-slate-50/30 to-blue-50/15 dark:bg-dark-900/60 shadow-lg shadow-blue-500/5">
               <div className="flex items-center justify-between">
                 <h4 className="text-sm font-semibold font-display text-slate-900 dark:text-white transition-colors">Coding & Professional Profiles</h4>
               </div>
@@ -219,10 +224,10 @@ export default function Contact() {
                       href={social.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2.5 p-3 rounded-xl bg-slate-100 hover:bg-slate-200/80 dark:bg-dark-900 dark:hover:bg-dark-800 border border-slate-200/80 dark:border-white/10 hover:border-emerald-500/40 dark:hover:border-cyber-emerald/40 text-slate-700 hover:text-slate-950 dark:text-slate-200 dark:hover:text-white transition-colors"
+                      className="flex items-center gap-2.5 p-3 rounded-xl bg-white/90 hover:bg-blue-50/70 dark:bg-dark-900 dark:hover:bg-dark-800 border border-slate-200/90 hover:border-blue-300 dark:border-white/10 dark:hover:border-blue-500/40 text-slate-800 hover:text-blue-950 dark:text-slate-200 dark:hover:text-white transition-all shadow-sm"
                       title={`${social.name} Profile`}
                     >
-                      <Icon className="w-4 h-4 text-emerald-600 dark:text-cyber-emerald" />
+                      <Icon className="w-4 h-4 text-blue-600 dark:text-cyan-400" />
                       <span className="text-xs font-medium">{social.name}</span>
                     </a>
                   );
@@ -234,7 +239,9 @@ export default function Contact() {
 
           {/* Right Column: Contact Form */}
           <div className="lg:col-span-7">
-            <div className="glass-card rounded-2xl p-7 sm:p-9 border border-slate-200/80 dark:border-white/10 relative overflow-hidden">
+            <div className="glass-card rounded-2xl p-7 sm:p-9 border border-slate-200/80 dark:border-white/10 bg-gradient-to-br from-white/95 via-slate-50/30 to-blue-50/15 dark:bg-dark-900/60 relative overflow-hidden shadow-xl shadow-blue-500/5">
+              {/* Subtle top accent bar */}
+              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-cyan-500 dark:from-blue-500 dark:via-indigo-500 dark:to-cyan-400" />
               
               <form onSubmit={handleSubmit} noValidate className="space-y-5">
                 <div>
@@ -323,17 +330,18 @@ export default function Contact() {
 
                 {/* Submit Button & Status Banners */}
                 <div className="pt-2 space-y-3">
-                  <button
+                  <MagneticButton
+                    as="button"
                     type="submit"
                     disabled={status === 'loading'}
                     className={`group relative w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-xl font-bold text-sm tracking-wide transition-all duration-300 ${
                       status === 'loading'
-                        ? 'bg-emerald-500/80 text-dark-950 cursor-not-allowed shadow-md opacity-90'
+                        ? 'bg-emerald-500/80 text-white dark:text-dark-950 cursor-not-allowed shadow-md opacity-90'
                         : status === 'success'
-                        ? 'bg-emerald-500 dark:bg-emerald-400 text-white dark:text-dark-950 shadow-lg shadow-emerald-500/30 scale-[1.02]'
+                        ? 'bg-emerald-600 dark:bg-emerald-400 text-white dark:text-dark-950 shadow-lg shadow-emerald-500/30 scale-[1.02]'
                         : status === 'error'
                         ? 'bg-rose-500 hover:bg-rose-600 dark:hover:bg-rose-400 text-white shadow-lg shadow-rose-500/25 hover:-translate-y-0.5 hover:scale-[1.02] active:translate-y-0 active:scale-[0.98]'
-                        : 'bg-cyber-emerald hover:bg-emerald-400 text-dark-950 shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/35 hover:-translate-y-0.5 hover:scale-[1.02] active:translate-y-0 active:scale-[0.98]'
+                        : 'bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white dark:bg-cyber-emerald dark:hover:bg-emerald-400 dark:text-dark-950 shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 hover:-translate-y-0.5 hover:scale-[1.02] active:translate-y-0 active:scale-[0.98]'
                     }`}
                     title={
                       status === 'loading'
@@ -347,7 +355,7 @@ export default function Contact() {
                   >
                     {status === 'loading' ? (
                       <>
-                        <Loader2 className="w-4 h-4 animate-spin text-dark-950" />
+                        <Loader2 className="w-4 h-4 animate-spin text-white dark:text-dark-950" />
                         <span>Sending...</span>
                       </>
                     ) : status === 'success' ? (
@@ -363,10 +371,10 @@ export default function Contact() {
                     ) : (
                       <>
                         <span>Send Message</span>
-                        <Send className="w-4 h-4 transition-transform duration-300 ease-out group-hover:translate-x-1 group-hover:-translate-y-0.5 text-dark-950" />
+                        <Send className="w-4 h-4 transition-transform duration-300 ease-out group-hover:translate-x-1 group-hover:-translate-y-0.5 text-white dark:text-dark-950" />
                       </>
                     )}
-                  </button>
+                  </MagneticButton>
 
                   {/* Inline Success Banner */}
                   {status === 'success' && (
