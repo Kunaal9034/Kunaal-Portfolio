@@ -116,19 +116,19 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 relative z-10 border-t border-white/5 bg-dark-950/40">
+    <section id="contact" className="py-24 relative z-10 border-t border-slate-200/80 dark:border-white/5 bg-slate-100/40 dark:bg-dark-950/40 transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono uppercase tracking-wider text-cyber-emerald bg-cyber-emerald/10 border border-cyber-emerald/20">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono uppercase tracking-wider text-emerald-700 dark:text-cyber-emerald bg-emerald-50 dark:bg-cyber-emerald/10 border border-emerald-300/80 dark:border-cyber-emerald/20 transition-colors">
             <Mail className="w-3.5 h-3.5" />
             Get In Touch
           </div>
-          <h2 className="text-3xl sm:text-4xl font-display font-bold text-white tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-display font-bold text-slate-900 dark:text-white tracking-tight transition-colors">
             Contact & Collaboration
           </h2>
-          <p className="text-slate-400 text-sm sm:text-base">
+          <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base transition-colors">
             Feel free to reach out for software engineering inquiries, AI/ML discussions, or technical collaboration.
           </p>
         </div>
@@ -139,23 +139,23 @@ export default function Contact() {
           {/* Left Column: Direct Info & Social Placeholders */}
           <div className="lg:col-span-5 space-y-6">
             
-            <div className="glass-card rounded-2xl p-7 space-y-6 border border-white/5">
-              <h3 className="text-xl font-display font-bold text-white">
+            <div className="glass-card rounded-2xl p-7 space-y-6 border border-slate-200/80 dark:border-white/5">
+              <h3 className="text-xl font-display font-bold text-slate-900 dark:text-white transition-colors">
                 Contact Information
               </h3>
               
               <div className="space-y-4 text-sm">
                 {/* Email Item */}
-                <div className="flex items-start justify-between p-3.5 rounded-xl bg-dark-900/80 border border-white/5 group">
+                <div className="flex items-start justify-between p-3.5 rounded-xl bg-slate-100/90 dark:bg-dark-900/80 border border-slate-200 dark:border-white/5 group transition-colors">
                   <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 rounded-lg bg-cyber-emerald/10 border border-cyber-emerald/30 flex items-center justify-center text-cyber-emerald">
+                    <div className="w-9 h-9 rounded-lg bg-emerald-50 dark:bg-cyber-emerald/10 border border-emerald-300/80 dark:border-cyber-emerald/30 flex items-center justify-center text-emerald-600 dark:text-cyber-emerald transition-colors">
                       <Mail className="w-4 h-4" />
                     </div>
                     <div>
-                      <div className="text-xs text-slate-400 font-mono">Email Address</div>
+                      <div className="text-xs text-slate-500 dark:text-slate-400 font-mono">Email Address</div>
                       <a
                         href={`mailto:${personalData.contact.email}`}
-                        className="font-medium text-white hover:text-cyber-emerald transition-colors"
+                        className="font-medium text-slate-900 dark:text-white hover:text-emerald-600 dark:hover:text-cyber-emerald transition-colors"
                       >
                         {personalData.contact.email}
                       </a>
@@ -165,24 +165,24 @@ export default function Contact() {
                   <button
                     type="button"
                     onClick={handleCopyEmail}
-                    className="p-1.5 text-slate-400 hover:text-white rounded-lg hover:bg-white/5 transition-colors"
+                    className="p-1.5 text-slate-400 hover:text-slate-700 dark:hover:text-white rounded-lg hover:bg-slate-200/60 dark:hover:bg-white/5 transition-colors"
                     title="Copy email to clipboard"
                     aria-label="Copy email"
                   >
-                    {copiedEmail ? <Check className="w-4 h-4 text-cyber-emerald" /> : <Copy className="w-4 h-4" />}
+                    {copiedEmail ? <Check className="w-4 h-4 text-emerald-600 dark:text-cyber-emerald" /> : <Copy className="w-4 h-4" />}
                   </button>
                 </div>
 
                 {/* Phone Item */}
-                <div className="flex items-center gap-3 p-3.5 rounded-xl bg-dark-900/80 border border-white/5">
-                  <div className="w-9 h-9 rounded-lg bg-cyber-cyan/10 border border-cyber-cyan/30 flex items-center justify-center text-cyber-cyan">
+                <div className="flex items-center gap-3 p-3.5 rounded-xl bg-slate-100/90 dark:bg-dark-900/80 border border-slate-200 dark:border-white/5 transition-colors">
+                  <div className="w-9 h-9 rounded-lg bg-cyan-50 dark:bg-cyber-cyan/10 border border-cyan-300/80 dark:border-cyber-cyan/30 flex items-center justify-center text-cyan-600 dark:text-cyber-cyan transition-colors">
                     <Phone className="w-4 h-4" />
                   </div>
                   <div>
-                    <div className="text-xs text-slate-400 font-mono">Phone Number</div>
+                    <div className="text-xs text-slate-500 dark:text-slate-400 font-mono">Phone Number</div>
                     <a
                       href={`tel:${personalData.contact.phone.replace(/\s+/g, '')}`}
-                      className="font-medium text-white hover:text-cyber-cyan transition-colors"
+                      className="font-medium text-slate-900 dark:text-white hover:text-cyan-700 dark:hover:text-cyber-cyan transition-colors"
                     >
                       {personalData.contact.phone}
                     </a>
@@ -190,13 +190,13 @@ export default function Contact() {
                 </div>
 
                 {/* Location Item */}
-                <div className="flex items-center gap-3 p-3.5 rounded-xl bg-dark-900/80 border border-white/5">
-                  <div className="w-9 h-9 rounded-lg bg-cyber-indigo/10 border border-cyber-indigo/30 flex items-center justify-center text-cyber-indigo">
+                <div className="flex items-center gap-3 p-3.5 rounded-xl bg-slate-100/90 dark:bg-dark-900/80 border border-slate-200 dark:border-white/5 transition-colors">
+                  <div className="w-9 h-9 rounded-lg bg-indigo-50 dark:bg-cyber-indigo/10 border border-indigo-300/80 dark:border-cyber-indigo/30 flex items-center justify-center text-indigo-600 dark:text-cyber-indigo transition-colors">
                     <MapPin className="w-4 h-4" />
                   </div>
                   <div>
-                    <div className="text-xs text-slate-400 font-mono">Location</div>
-                    <div className="font-medium text-white">
+                    <div className="text-xs text-slate-500 dark:text-slate-400 font-mono">Location</div>
+                    <div className="font-medium text-slate-900 dark:text-white transition-colors">
                       {personalData.contact.location}
                     </div>
                   </div>
@@ -205,9 +205,9 @@ export default function Contact() {
             </div>
 
             {/* Social & Coding Platform Profiles */}
-            <div className="glass-card rounded-2xl p-7 space-y-4 border border-white/5">
+            <div className="glass-card rounded-2xl p-7 space-y-4 border border-slate-200/80 dark:border-white/5">
               <div className="flex items-center justify-between">
-                <h4 className="text-sm font-semibold font-display text-white">Coding & Professional Profiles</h4>
+                <h4 className="text-sm font-semibold font-display text-slate-900 dark:text-white transition-colors">Coding & Professional Profiles</h4>
               </div>
 
               <div className="grid grid-cols-2 gap-3">
@@ -219,10 +219,10 @@ export default function Contact() {
                       href={social.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2.5 p-3 rounded-xl bg-dark-900 border border-white/10 hover:border-cyber-emerald/40 text-slate-200 hover:text-white transition-colors"
+                      className="flex items-center gap-2.5 p-3 rounded-xl bg-slate-100 hover:bg-slate-200/80 dark:bg-dark-900 dark:hover:bg-dark-800 border border-slate-200/80 dark:border-white/10 hover:border-emerald-500/40 dark:hover:border-cyber-emerald/40 text-slate-700 hover:text-slate-950 dark:text-slate-200 dark:hover:text-white transition-colors"
                       title={`${social.name} Profile`}
                     >
-                      <Icon className="w-4 h-4 text-cyber-emerald" />
+                      <Icon className="w-4 h-4 text-emerald-600 dark:text-cyber-emerald" />
                       <span className="text-xs font-medium">{social.name}</span>
                     </a>
                   );
@@ -234,19 +234,19 @@ export default function Contact() {
 
           {/* Right Column: Contact Form */}
           <div className="lg:col-span-7">
-            <div className="glass-card rounded-2xl p-7 sm:p-9 border border-white/10 relative overflow-hidden">
+            <div className="glass-card rounded-2xl p-7 sm:p-9 border border-slate-200/80 dark:border-white/10 relative overflow-hidden">
               
               <form onSubmit={handleSubmit} noValidate className="space-y-5">
                 <div>
-                  <h3 className="text-2xl font-display font-bold text-white">
+                  <h3 className="text-2xl font-display font-bold text-slate-900 dark:text-white transition-colors">
                     Send a Message
                   </h3>
                 </div>
 
                 {/* Name Field */}
                 <div className="space-y-1.5 text-left">
-                  <label htmlFor="contact-name" className="block text-xs font-medium text-slate-300 font-mono">
-                    Your Name <span className="text-rose-400">*</span>
+                  <label htmlFor="contact-name" className="block text-xs font-medium text-slate-700 dark:text-slate-300 font-mono transition-colors">
+                    Your Name <span className="text-rose-500">*</span>
                   </label>
                   <input
                     id="contact-name"
@@ -262,7 +262,7 @@ export default function Contact() {
                     className="w-full px-4 py-3 rounded-xl form-input text-sm disabled:opacity-60 disabled:cursor-not-allowed"
                   />
                   {errors.name && (
-                    <p id="name-error" className="text-xs text-rose-400 flex items-center gap-1 mt-1">
+                    <p id="name-error" className="text-xs text-rose-500 dark:text-rose-400 flex items-center gap-1 mt-1">
                       <AlertCircle className="w-3.5 h-3.5" />
                       {errors.name}
                     </p>
@@ -271,8 +271,8 @@ export default function Contact() {
 
                 {/* Email Field */}
                 <div className="space-y-1.5 text-left">
-                  <label htmlFor="contact-email" className="block text-xs font-medium text-slate-300 font-mono">
-                    Your Email <span className="text-rose-400">*</span>
+                  <label htmlFor="contact-email" className="block text-xs font-medium text-slate-700 dark:text-slate-300 font-mono transition-colors">
+                    Your Email <span className="text-rose-500">*</span>
                   </label>
                   <input
                     id="contact-email"
@@ -288,7 +288,7 @@ export default function Contact() {
                     className="w-full px-4 py-3 rounded-xl form-input text-sm disabled:opacity-60 disabled:cursor-not-allowed"
                   />
                   {errors.email && (
-                    <p id="email-error" className="text-xs text-rose-400 flex items-center gap-1 mt-1">
+                    <p id="email-error" className="text-xs text-rose-500 dark:text-rose-400 flex items-center gap-1 mt-1">
                       <AlertCircle className="w-3.5 h-3.5" />
                       {errors.email}
                     </p>
@@ -297,8 +297,8 @@ export default function Contact() {
 
                 {/* Message Field */}
                 <div className="space-y-1.5 text-left">
-                  <label htmlFor="contact-message" className="block text-xs font-medium text-slate-300 font-mono">
-                    Message <span className="text-rose-400">*</span>
+                  <label htmlFor="contact-message" className="block text-xs font-medium text-slate-700 dark:text-slate-300 font-mono transition-colors">
+                    Message <span className="text-rose-500">*</span>
                   </label>
                   <textarea
                     id="contact-message"
@@ -314,7 +314,7 @@ export default function Contact() {
                     className="w-full px-4 py-3 rounded-xl form-input text-sm resize-none disabled:opacity-60 disabled:cursor-not-allowed"
                   />
                   {errors.message && (
-                    <p id="message-error" className="text-xs text-rose-400 flex items-center gap-1 mt-1">
+                    <p id="message-error" className="text-xs text-rose-500 dark:text-rose-400 flex items-center gap-1 mt-1">
                       <AlertCircle className="w-3.5 h-3.5" />
                       {errors.message}
                     </p>
@@ -330,9 +330,9 @@ export default function Contact() {
                       status === 'loading'
                         ? 'bg-emerald-500/80 text-dark-950 cursor-not-allowed shadow-md opacity-90'
                         : status === 'success'
-                        ? 'bg-emerald-400 text-dark-950 shadow-lg shadow-emerald-500/30 scale-[1.02]'
+                        ? 'bg-emerald-500 dark:bg-emerald-400 text-white dark:text-dark-950 shadow-lg shadow-emerald-500/30 scale-[1.02]'
                         : status === 'error'
-                        ? 'bg-rose-500 hover:bg-rose-400 text-white shadow-lg shadow-rose-500/25 hover:-translate-y-0.5 hover:scale-[1.02] active:translate-y-0 active:scale-[0.98]'
+                        ? 'bg-rose-500 hover:bg-rose-600 dark:hover:bg-rose-400 text-white shadow-lg shadow-rose-500/25 hover:-translate-y-0.5 hover:scale-[1.02] active:translate-y-0 active:scale-[0.98]'
                         : 'bg-cyber-emerald hover:bg-emerald-400 text-dark-950 shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/35 hover:-translate-y-0.5 hover:scale-[1.02] active:translate-y-0 active:scale-[0.98]'
                     }`}
                     title={
@@ -352,7 +352,7 @@ export default function Contact() {
                       </>
                     ) : status === 'success' ? (
                       <>
-                        <Check className="w-4 h-4 stroke-[2.5] text-dark-950" />
+                        <Check className="w-4 h-4 stroke-[2.5]" />
                         <span>Message Sent ✓</span>
                       </>
                     ) : status === 'error' ? (
@@ -370,21 +370,21 @@ export default function Contact() {
 
                   {/* Inline Success Banner */}
                   {status === 'success' && (
-                    <div className="p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs flex items-center gap-2.5 transition-all duration-300">
-                      <CheckCircle2 className="w-4 h-4 shrink-0 text-cyber-emerald" />
+                    <div className="p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-800 dark:text-emerald-300 text-xs flex items-center gap-2.5 transition-all duration-300">
+                      <CheckCircle2 className="w-4 h-4 shrink-0 text-emerald-600 dark:text-cyber-emerald" />
                       <span>Your message has been sent to skunaal57@gmail.com. Kunaal will respond to your email soon!</span>
                     </div>
                   )}
 
                   {/* Inline Error Banner with Retry info */}
                   {status === 'error' && (
-                    <div className="p-3.5 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs flex items-start gap-2.5 transition-all duration-300">
-                      <AlertCircle className="w-4 h-4 shrink-0 mt-0.5 text-rose-400" />
+                    <div className="p-3.5 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-700 dark:text-rose-300 text-xs flex items-start gap-2.5 transition-all duration-300">
+                      <AlertCircle className="w-4 h-4 shrink-0 mt-0.5 text-rose-500 dark:text-rose-400" />
                       <div className="space-y-1">
                         <p>{errorMessage}</p>
-                        <p className="text-[11px] text-slate-400">
+                        <p className="text-[11px] text-slate-500 dark:text-slate-400">
                           Click the button above to retry, or email directly to{' '}
-                          <a href={`mailto:${personalData.contact.email}`} className="text-cyber-cyan hover:underline">
+                          <a href={`mailto:${personalData.contact.email}`} className="text-cyan-700 dark:text-cyber-cyan hover:underline font-medium">
                             {personalData.contact.email}
                           </a>.
                         </p>
@@ -396,7 +396,7 @@ export default function Contact() {
                 {/* Direct Mail Link */}
                 <p className="text-[11px] text-slate-500 leading-relaxed pt-2">
                   Direct messages are delivered to{' '}
-                  <a href={`mailto:${personalData.contact.email}`} className="text-cyber-cyan hover:underline">
+                  <a href={`mailto:${personalData.contact.email}`} className="text-cyan-700 dark:text-cyber-cyan hover:underline font-medium">
                     {personalData.contact.email}
                   </a>.
                 </p>

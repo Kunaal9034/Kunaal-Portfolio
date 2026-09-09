@@ -58,6 +58,8 @@ export default function BackgroundCanvas() {
     const render = () => {
       ctx.clearRect(0, 0, width, height);
 
+      const isDark = document.documentElement.classList.contains('dark');
+
       // Draw subtle ambient glow gradients
       const grad1 = ctx.createRadialGradient(
         width * 0.2,
@@ -67,7 +69,7 @@ export default function BackgroundCanvas() {
         height * 0.2,
         width * 0.45
       );
-      grad1.addColorStop(0, 'rgba(16, 185, 129, 0.04)');
+      grad1.addColorStop(0, isDark ? 'rgba(16, 185, 129, 0.04)' : 'rgba(16, 185, 129, 0.035)');
       grad1.addColorStop(1, 'transparent');
       ctx.fillStyle = grad1;
       ctx.fillRect(0, 0, width, height);
@@ -80,7 +82,7 @@ export default function BackgroundCanvas() {
         height * 0.7,
         width * 0.45
       );
-      grad2.addColorStop(0, 'rgba(6, 182, 212, 0.04)');
+      grad2.addColorStop(0, isDark ? 'rgba(6, 182, 212, 0.04)' : 'rgba(6, 182, 212, 0.035)');
       grad2.addColorStop(1, 'transparent');
       ctx.fillStyle = grad2;
       ctx.fillRect(0, 0, width, height);
@@ -109,7 +111,9 @@ export default function BackgroundCanvas() {
         // Draw node
         ctx.beginPath();
         ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(16, 185, 129, ${node.baseAlpha})`;
+        ctx.fillStyle = isDark
+          ? `rgba(16, 185, 129, ${node.baseAlpha})`
+          : `rgba(5, 150, 105, ${node.baseAlpha * 1.15})`;
         ctx.fill();
 
         // Connect nearby nodes (neural network web)
@@ -120,11 +124,13 @@ export default function BackgroundCanvas() {
           const dist = Math.sqrt(dx * dx + dy * dy);
 
           if (dist < 120) {
-            const alpha = (1 - dist / 120) * 0.14;
+            const alpha = (1 - dist / 120) * (isDark ? 0.14 : 0.16);
             ctx.beginPath();
             ctx.moveTo(node.x, node.y);
             ctx.lineTo(nodeB.x, nodeB.y);
-            ctx.strokeStyle = `rgba(6, 182, 212, ${alpha})`;
+            ctx.strokeStyle = isDark
+              ? `rgba(6, 182, 212, ${alpha})`
+              : `rgba(2, 132, 199, ${alpha})`;
             ctx.lineWidth = 0.8;
             ctx.stroke();
           }
@@ -132,11 +138,13 @@ export default function BackgroundCanvas() {
 
         // Connect to mouse if near
         if (distMouse < mouse.radius) {
-          const alpha = (1 - distMouse / mouse.radius) * 0.22;
+          const alpha = (1 - distMouse / mouse.radius) * (isDark ? 0.22 : 0.25);
           ctx.beginPath();
           ctx.moveTo(node.x, node.y);
           ctx.lineTo(mouse.x, mouse.y);
-          ctx.strokeStyle = `rgba(16, 185, 129, ${alpha})`;
+          ctx.strokeStyle = isDark
+            ? `rgba(16, 185, 129, ${alpha})`
+            : `rgba(5, 150, 105, ${alpha})`;
           ctx.lineWidth = 1;
           ctx.stroke();
         }
@@ -159,7 +167,7 @@ export default function BackgroundCanvas() {
     <canvas
       ref={canvasRef}
       aria-hidden="true"
-      className="fixed inset-0 pointer-events-none z-0 opacity-80"
+      className="fixed inset-0 pointer-events-none z-0 opacity-80 transition-opacity duration-300"
     />
   );
 }

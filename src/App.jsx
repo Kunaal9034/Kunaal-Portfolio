@@ -1,4 +1,5 @@
 import React from 'react';
+import { ThemeProvider } from './context/ThemeContext';
 import Navbar from './components/Navbar';
 import BackgroundCanvas from './components/BackgroundCanvas';
 import Hero from './components/Hero';
@@ -14,28 +15,30 @@ import Footer from './components/Footer';
 
 export default function App() {
   return (
-    <div className="relative min-h-screen bg-dark-950 text-slate-100 cyber-grid">
-      {/* Dynamic neural / particle canvas */}
-      <BackgroundCanvas />
+    <ThemeProvider>
+      <div className="relative min-h-screen bg-slate-50 dark:bg-dark-950 text-slate-900 dark:text-slate-100 cyber-grid transition-colors duration-300">
+        {/* Dynamic neural / particle canvas */}
+        <BackgroundCanvas />
 
-      {/* Sticky glassmorphic navbar */}
-      <Navbar />
+        {/* Sticky glassmorphic navbar with theme toggle */}
+        <Navbar />
 
-      {/* Main content sections */}
-      <main id="main-content" className="relative z-10">
-        <Hero />
-        <About />
-        <Skills />
-        <Projects />
-        <Education />
-        <Certifications />
-        <Activities />
-        <Achievements />
-        <Contact />
-      </main>
+        {/* Main content sections */}
+        <main id="main-content" className="relative z-10">
+          <Hero />
+          <About />
+          <Skills />
+          <Projects />
+          <Education />
+          <Certifications />
+          <Activities />
+          <Achievements />
+          <Contact />
+        </main>
 
-      {/* Footer */}
-      <Footer />
-    </div>
+        {/* Footer */}
+        <Footer />
+      </div>
+    </ThemeProvider>
   );
 }
