@@ -50,13 +50,13 @@ export default function Navbar() {
         {/* Brand */}
         <a 
           href="#home" 
-          className="group flex items-center gap-2.5 font-display text-xl font-bold tracking-tight text-slate-900 dark:text-white hover:text-emerald-700 dark:hover:text-cyber-emerald transition-colors shrink-0 mr-6 xl:mr-10"
+          className="group flex items-center gap-2.5 font-display text-xl font-bold tracking-[0.03em] text-slate-900 dark:text-white hover:text-emerald-700 dark:hover:text-cyber-emerald transition-colors shrink-0 mr-6 xl:mr-10"
           aria-label="Kunaal Portfolio Home"
         >
           <span className="w-8 h-8 rounded-lg bg-slate-100 dark:bg-white/5 border border-slate-200/80 dark:border-white/10 flex items-center justify-center text-emerald-600 dark:text-cyber-emerald group-hover:border-emerald-500/40 dark:group-hover:border-cyber-emerald/40 transition-colors">
             <Terminal className="w-4 h-4" />
           </span>
-          <span>
+          <span className="tracking-[0.03em]">
             Kunaal<span className="text-emerald-600 dark:text-cyber-emerald">.ai</span>
           </span>
         </a>
@@ -94,11 +94,11 @@ export default function Navbar() {
           <MagneticButton
             as="a"
             href="#contact"
-            className="hidden sm:inline-flex items-center gap-2 px-4.5 sm:px-5 py-2.5 text-xs sm:text-sm font-semibold rounded-xl transition-all duration-200 shadow-sm
+            className="hidden sm:inline-flex items-center gap-2 px-4.5 sm:px-5 py-2.5 text-xs sm:text-sm font-semibold tracking-[0.03em] rounded-xl transition-all duration-200 shadow-sm
               bg-slate-900 hover:bg-slate-800 text-white border border-slate-800
               dark:bg-white/10 dark:hover:bg-white/15 dark:text-white dark:border-white/15 dark:shadow-none"
           >
-            <span>Let's Talk</span>
+            <span className="tracking-[0.03em]">Let's Talk</span>
             <ArrowUpRight className="w-4 h-4 text-emerald-400 dark:text-cyber-emerald" />
           </MagneticButton>
 
