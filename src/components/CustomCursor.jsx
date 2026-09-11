@@ -33,6 +33,11 @@ export default function CustomCursor() {
       mousePos.current = { x: e.clientX, y: e.clientY };
       if (!isVisible) setIsVisible(true);
 
+      // Disable DOM scanning and state updates while modal is open
+      if (document.body.classList.contains('modal-open')) {
+        return;
+      }
+
       // Check if hovering over interactive element
       const target = e.target;
       if (target) {
@@ -48,7 +53,18 @@ export default function CustomCursor() {
     };
 
     const updateLoop = () => {
+      // Pause cursor rendering while modal is open for native 60fps scrolling
+      if (document.body.classList.contains('modal-open')) {
+        if (dotRef.current) dotRef.current.style.opacity = '0';
+        if (ringRef.current) ringRef.current.style.opacity = '0';
+        animFrameId.current = requestAnimationFrame(updateLoop);
+        return;
+      }
+
       if (dotRef.current && ringRef.current) {
+        dotRef.current.style.opacity = '1';
+        ringRef.current.style.opacity = '1';
+
         // Direct dot placement
         dotRef.current.style.transform = `translate3d(${mousePos.current.x - 3}px, ${mousePos.current.y - 3}px, 0)`;
 
@@ -89,7 +105,7 @@ export default function CustomCursor() {
       {/* Central Precision Dot */}
       <div
         ref={dotRef}
-        className="fixed top-0 left-0 w-1.5 h-1.5 rounded-full bg-emerald-500 dark:bg-cyber-emerald pointer-events-none"
+        className="fixed top-0 left-0 w-1.5 h-1.5 rounded-full bg-cyan-500 dark:bg-cyber-cyan pointer-events-none"
       />
 
       {/* Smooth Trailing Responsive Ring */}

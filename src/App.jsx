@@ -6,6 +6,9 @@ import Hero from './components/Hero';
 import About from './components/About';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
+import GitHubActivity from './components/GitHubActivity';
+import MLPlayground from './components/MLPlayground';
+import EngineeringWorkflow from './components/EngineeringWorkflow';
 import Education from './components/Education';
 import Certifications from './components/Certifications';
 import Activities from './components/Activities';
@@ -16,11 +19,15 @@ import ScrollProgress from './components/ScrollProgress';
 import SpotlightCursor from './components/SpotlightCursor';
 import CustomCursor from './components/CustomCursor';
 import SectionNavIndicator from './components/SectionNavIndicator';
+import CommandPalette from './components/CommandPalette';
 
 export default function App() {
   return (
     <ThemeProvider>
       <div className="relative min-h-screen bg-slate-50 dark:bg-dark-950 text-slate-900 dark:text-slate-100 cyber-grid transition-colors duration-300">
+        {/* Global Keyboard Command Palette (Ctrl + K) */}
+        <CommandPalette />
+
         {/* Scroll Progress Bar at very top */}
         <ScrollProgress />
 
@@ -45,6 +52,9 @@ export default function App() {
           <About />
           <Skills />
           <Projects />
+          <GitHubActivity />
+          <MLPlayground />
+          <EngineeringWorkflow />
           <Education />
           <Certifications />
           <Activities />

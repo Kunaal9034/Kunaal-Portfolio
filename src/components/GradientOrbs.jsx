@@ -28,10 +28,21 @@ export default function GradientOrbs() {
     };
 
     const updateLoop = () => {
-      setOffset((prev) => ({
-        x: prev.x + (targetOffset.current.x - prev.x) * 0.08,
-        y: prev.y + (targetOffset.current.y - prev.y) * 0.08,
-      }));
+      // Pause updates while modal is open
+      if (document.body.classList.contains('modal-open')) {
+        animFrameId.current = requestAnimationFrame(updateLoop);
+        return;
+      }
+
+      setOffset((prev) => {
+        const dx = targetOffset.current.x - prev.x;
+        const dy = targetOffset.current.y - prev.y;
+        if (Math.abs(dx) < 0.1 && Math.abs(dy) < 0.1) return prev;
+        return {
+          x: prev.x + dx * 0.08,
+          y: prev.y + dy * 0.08,
+        };
+      });
       animFrameId.current = requestAnimationFrame(updateLoop);
     };
 

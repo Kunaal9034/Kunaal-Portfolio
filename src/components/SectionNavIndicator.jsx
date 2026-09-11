@@ -5,6 +5,9 @@ const SECTIONS = [
   { id: 'about', label: 'About' },
   { id: 'skills', label: 'Skills' },
   { id: 'projects', label: 'Projects' },
+  { id: 'github', label: 'GitHub' },
+  { id: 'playground', label: 'AI/ML Playground' },
+  { id: 'workflow', label: 'Workflow' },
   { id: 'education', label: 'Education' },
   { id: 'certifications', label: 'Certifications' },
   { id: 'activities', label: 'Activities' },
@@ -52,7 +55,7 @@ export default function SectionNavIndicator() {
 
   return (
     <nav
-      className="hidden xl:flex fixed right-5 top-1/2 -translate-y-1/2 z-40 flex-col items-center gap-3.5 py-4 px-2 rounded-full glass-card border border-slate-200/60 dark:border-white/5 backdrop-blur-md shadow-lg shadow-black/5"
+      className="hidden xl:flex fixed right-5 top-1/2 -translate-y-1/2 z-40 flex-col items-center gap-3.5 py-4 px-2 rounded-full glass-card border border-slate-300/70 dark:border-white/10 backdrop-blur-md shadow-lg shadow-black/5"
       aria-label="Section Quick Navigation"
     >
       {SECTIONS.map((sec) => {
@@ -63,12 +66,12 @@ export default function SectionNavIndicator() {
             key={sec.id}
             type="button"
             onClick={() => scrollTo(sec.id)}
-            className="group relative flex items-center justify-center p-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 rounded-full"
+            className="group relative flex items-center justify-center p-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 rounded-full"
             aria-label={`Scroll to ${sec.label}`}
             aria-current={isActive ? 'true' : undefined}
           >
             {/* Tooltip on hover */}
-            <span className="pointer-events-none absolute right-full mr-3 px-2.5 py-1 rounded-md text-[11px] font-mono whitespace-nowrap bg-slate-900/90 dark:bg-dark-900/95 text-white border border-slate-700/80 dark:border-white/10 shadow-md opacity-0 group-hover:opacity-100 -translate-x-1 group-hover:translate-x-0 transition-all duration-200">
+            <span className="pointer-events-none absolute right-full mr-3 px-2.5 py-1 rounded-md text-[11px] font-mono whitespace-nowrap bg-slate-900/95 dark:bg-dark-900/95 text-white border border-slate-700/80 dark:border-white/10 shadow-md opacity-0 group-hover:opacity-100 -translate-x-1 group-hover:translate-x-0 transition-all duration-200">
               {sec.label}
             </span>
 
@@ -76,7 +79,7 @@ export default function SectionNavIndicator() {
             <span
               className={`rounded-full transition-all duration-300 ${
                 isActive
-                  ? 'w-2.5 h-2.5 bg-emerald-500 dark:bg-cyber-emerald ring-4 ring-emerald-500/25 dark:ring-cyber-emerald/30 shadow-sm shadow-emerald-500/50 scale-110'
+                  ? 'w-2.5 h-2.5 bg-cyan-600 dark:bg-cyan-400 ring-4 ring-cyan-500/25 dark:ring-cyan-400/30 shadow-sm shadow-cyan-500/50 scale-110'
                   : 'w-1.5 h-1.5 bg-slate-400 dark:bg-slate-600 group-hover:bg-slate-600 dark:group-hover:bg-slate-300 group-hover:scale-125'
               }`}
             />

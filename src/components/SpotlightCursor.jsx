@@ -34,9 +34,16 @@ export default function SpotlightCursor() {
     };
 
     const updateLoop = () => {
+      // Pause updates while modal is open
+      if (document.body.classList.contains('modal-open')) {
+        animFrameId.current = requestAnimationFrame(updateLoop);
+        return;
+      }
+
       setCoords((prev) => {
         const dx = targetCoords.current.x - prev.x;
         const dy = targetCoords.current.y - prev.y;
+        if (Math.abs(dx) < 0.2 && Math.abs(dy) < 0.2) return prev;
         return {
           x: prev.x + dx * 0.15,
           y: prev.y + dy * 0.15

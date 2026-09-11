@@ -68,6 +68,8 @@ export default function AnimatedCounter({
     const element = elementRef.current;
     if (!element) return;
 
+    let animFrameId = null;
+
     if (!('IntersectionObserver' in window)) {
       setDisplayValue(value);
       hasAnimatedRef.current = true;
@@ -92,33 +94,36 @@ export default function AnimatedCounter({
               const eased = 1 - Math.pow(1 - progress, 3);
               const currentVal = Math.round(eased * target);
 
+              let formatted = '';
               if (progress >= 1) {
-                // Ensure exact final format
-                setDisplayValue(`${prefix}${target}${suffix}`);
+                formatted = `${prefix}${target}${suffix}`;
               } else {
-                // Format intermediate count-up states
                 if (currentVal === 0) {
-                  if (prefix === '~' && suffix === '%') {
-                    setDisplayValue('~0%');
-                  } else {
-                    setDisplayValue('0');
-                  }
+                  formatted = (prefix === '~' && suffix === '%') ? '~0%' : '0';
                 } else if (currentVal < target) {
                   if (prefix === '~' && suffix === '%') {
-                    setDisplayValue(`~${currentVal}%`);
+                    formatted = `~${currentVal}%`;
                   } else if (suffix === '+') {
-                    setDisplayValue(`${prefix}${currentVal}`);
+                    formatted = `${prefix}${currentVal}`;
                   } else {
-                    setDisplayValue(`${prefix}${currentVal}${suffix}`);
+                    formatted = `${prefix}${currentVal}${suffix}`;
                   }
                 } else {
-                  setDisplayValue(`${prefix}${target}${suffix}`);
+                  formatted = `${prefix}${target}${suffix}`;
                 }
-                requestAnimationFrame(step);
+              }
+
+              // Direct DOM text update avoids triggering component-wide React re-renders
+              if (elementRef.current) {
+                elementRef.current.textContent = formatted;
+              }
+
+              if (progress < 1) {
+                animFrameId = requestAnimationFrame(step);
               }
             };
 
-            requestAnimationFrame(step);
+            animFrameId = requestAnimationFrame(step);
           };
 
           if (delay > 0) {
@@ -129,8 +134,8 @@ export default function AnimatedCounter({
         }
       },
       {
-        threshold: 0.2,
-        rootMargin: '0px 0px -40px 0px'
+        threshold: 0.1,
+        rootMargin: '0px 0px 40px 0px'
       }
     );
 
@@ -138,6 +143,7 @@ export default function AnimatedCounter({
 
     return () => {
       observer.disconnect();
+      if (animFrameId) cancelAnimationFrame(animFrameId);
     };
   }, [value, duration, delay]);
 

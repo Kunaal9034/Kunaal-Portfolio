@@ -69,43 +69,84 @@ html.dark ::-webkit-scrollbar-thumb:hover {
   background: #334155;
 }
 
-/* Glassmorphic card styling */
+/* Modal Lock & Smooth Scrolling */
+body.modal-open {
+  overflow: hidden !important;
+  overscroll-behavior: none !important;
+}
+
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 transparent;
+  -webkit-overflow-scrolling: touch;
+}
+
+html.dark .custom-scrollbar {
+  scrollbar-color: #1e293b transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+html.dark .custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #1e293b;
+}
+
+html.dark .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+/* Unified Developer Console Panel / Card Styling */
 .glass-card {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.94), rgba(248, 250, 252, 0.88));
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(15, 23, 42, 0.08);
-  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.04), 0 2px 6px -1px rgba(15, 23, 42, 0.02), inset 0 1px 0 0 rgba(255, 255, 255, 0.85);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(248, 250, 252, 0.92));
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  box-shadow: 0 4px 18px -2px rgba(15, 23, 42, 0.05), 0 1px 3px 0 rgba(15, 23, 42, 0.03);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .glass-card:hover {
-  border-color: rgba(99, 102, 241, 0.35);
-  box-shadow: 0 14px 34px -8px rgba(99, 102, 241, 0.12), 0 4px 12px -2px rgba(15, 23, 42, 0.05), inset 0 1px 0 0 rgba(255, 255, 255, 0.95);
-  transform: translateY(-3px);
+  border-color: rgba(99, 102, 241, 0.4);
+  box-shadow: 0 12px 30px -6px rgba(99, 102, 241, 0.12), 0 2px 8px -1px rgba(15, 23, 42, 0.04);
+  transform: translateY(-2px);
 }
 
 /* Light-Mode Subtle Section Ambient Washes (Auto-disabled in dark mode) */
 .light-tint-hero {
-  background: radial-gradient(circle at 50% 20%, rgba(224, 242, 254, 0.55), rgba(238, 242, 255, 0.35) 45%, transparent 75%);
+  background: radial-gradient(circle at 50% 20%, rgba(224, 242, 254, 0.4), rgba(238, 242, 255, 0.25) 45%, transparent 75%);
 }
 .light-tint-skills {
-  background: radial-gradient(circle at 50% 30%, rgba(224, 231, 255, 0.45), rgba(238, 242, 255, 0.3) 50%, transparent 80%);
+  background: radial-gradient(circle at 50% 30%, rgba(224, 231, 255, 0.35), rgba(238, 242, 255, 0.2) 50%, transparent 80%);
 }
 .light-tint-projects {
-  background: radial-gradient(circle at 50% 30%, rgba(238, 242, 255, 0.45), rgba(243, 232, 255, 0.3) 50%, transparent 80%);
+  background: radial-gradient(circle at 50% 30%, rgba(238, 242, 255, 0.35), rgba(243, 232, 255, 0.2) 50%, transparent 80%);
 }
 .light-tint-edu {
-  background: radial-gradient(circle at 50% 30%, rgba(243, 232, 255, 0.45), rgba(238, 242, 255, 0.3) 50%, transparent 80%);
+  background: radial-gradient(circle at 50% 30%, rgba(243, 232, 255, 0.35), rgba(238, 242, 255, 0.2) 50%, transparent 80%);
 }
 .light-tint-certs {
-  background: radial-gradient(circle at 50% 30%, rgba(254, 243, 199, 0.45), rgba(255, 251, 235, 0.25) 50%, transparent 80%);
+  background: radial-gradient(circle at 50% 30%, rgba(254, 243, 199, 0.35), rgba(255, 251, 235, 0.2) 50%, transparent 80%);
 }
 .light-tint-activities {
-  background: radial-gradient(circle at 50% 30%, rgba(237, 233, 254, 0.45), rgba(224, 242, 254, 0.3) 50%, transparent 80%);
+  background: radial-gradient(circle at 50% 30%, rgba(237, 233, 254, 0.35), rgba(224, 242, 254, 0.2) 50%, transparent 80%);
 }
 .light-tint-contact {
-  background: radial-gradient(circle at 50% 30%, rgba(224, 242, 254, 0.55), rgba(240, 249, 255, 0.3) 50%, transparent 80%);
+  background: radial-gradient(circle at 50% 30%, rgba(224, 242, 254, 0.4), rgba(240, 249, 255, 0.2) 50%, transparent 80%);
 }
 
 html.dark .light-tint-hero,
@@ -119,17 +160,17 @@ html.dark .light-tint-contact {
 }
 
 html.dark .glass-card {
-  background: rgba(15, 23, 42, 0.65);
+  background: rgba(12, 18, 30, 0.85);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.3), inset 0 1px 0 0 rgba(255, 255, 255, 0.06);
+  box-shadow: 0 8px 32px -4px rgba(0, 0, 0, 0.45), inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
 }
 
 html.dark .glass-card:hover {
-  border-color: rgba(99, 102, 241, 0.35);
-  box-shadow: 0 14px 36px -10px rgba(99, 102, 241, 0.14), inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
-  transform: translateY(-3px);
+  border-color: rgba(6, 182, 212, 0.35);
+  box-shadow: 0 16px 40px -8px rgba(0, 0, 0, 0.6), 0 0 20px -4px rgba(6, 182, 212, 0.15), inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+  transform: translateY(-2px);
 }
 
 .glass-nav-top {
@@ -186,17 +227,17 @@ html.theme-transition *::after {
 }
 
 .cyber-grid {
-  background-size: 40px 40px;
+  background-size: 48px 48px;
   background-image: 
-    linear-gradient(to right, rgba(15, 23, 42, 0.032) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(15, 23, 42, 0.032) 1px, transparent 1px);
-  animation: cyberGridPan 50s linear infinite;
+    linear-gradient(to right, rgba(148, 163, 184, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
+  animation: cyberGridPan 60s linear infinite;
 }
 
 html.dark .cyber-grid {
   background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.024) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.024) 1px, transparent 1px);
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
 }
 
 /* Modern Form Validation Feedback (:user-invalid / :user-valid) */
@@ -247,6 +288,66 @@ html.dark .form-input:focus {
 
 html.dark .form-input:user-invalid {
   background-color: rgba(239, 68, 68, 0.05);
+}
+
+/* Developer Code-Editor Input Styling */
+.code-editor-input {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  caret-color: #06b6d4;
+  background-color: #ffffff;
+  border: 1px solid rgba(148, 163, 184, 0.45);
+  color: #0f172a;
+  transition: border-color 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.code-editor-input::placeholder {
+  color: #94a3b8;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8125rem;
+}
+
+.code-editor-input:focus {
+  outline: none;
+  background-color: #ffffff;
+  border-color: #06b6d4;
+  box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.15), 0 0 16px -2px rgba(6, 182, 212, 0.12);
+}
+
+.code-editor-input:user-invalid {
+  border-color: #ef4444;
+  background-color: rgba(239, 68, 68, 0.03);
+}
+
+.code-editor-input:user-invalid:focus {
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
+}
+
+.code-editor-input:user-valid:not(:placeholder-shown) {
+  border-color: #06b6d4;
+}
+
+html.dark .code-editor-input {
+  background-color: rgba(8, 12, 20, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #f1f5f9;
+}
+
+html.dark .code-editor-input::placeholder {
+  color: #475569;
+}
+
+html.dark .code-editor-input:focus {
+  background-color: rgba(8, 12, 20, 0.98);
+  border-color: #06b6d4;
+  box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.22), 0 0 24px -2px rgba(6, 182, 212, 0.22);
+}
+
+html.dark .code-editor-input:user-invalid {
+  background-color: rgba(239, 68, 68, 0.08);
 }
 
 /* Sequential Ellipsis Animation */

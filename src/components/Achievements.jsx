@@ -1,6 +1,6 @@
 import React from 'react';
 import { achievementsData } from '../data/achievements';
-import { Trophy, Code2, Users, BookOpen, CheckCircle } from 'lucide-react';
+import { Trophy, Code2, Users, BookOpen, CheckCircle, Sparkles, Terminal, Activity } from 'lucide-react';
 import AnimatedCounter from './AnimatedCounter';
 import useScrollReveal from '../hooks/useScrollReveal';
 
@@ -8,124 +8,184 @@ export default function Achievements() {
   const [headerRef, headerRevealed] = useScrollReveal({ threshold: 0.1 });
   const [achievementsGridRef, achievementsGridRevealed] = useScrollReveal({ threshold: 0.1 });
 
+  const featuredDSA = achievementsData.find(a => a.id === 'dsa-500');
+  const otherAchievements = achievementsData.filter(a => a.id !== 'dsa-500');
+
   const achievementIcons = {
-    Award: Code2,
     Users: Users,
     BookOpen: BookOpen,
   };
 
   return (
-    <section id="achievements" className="py-24 sm:py-28 lg:py-32 relative z-10 border-t border-slate-200/80 dark:border-white/5 bg-slate-50/40 dark:bg-dark-950/40 light-tint-projects transition-colors">
+    <section id="achievements" className="py-24 sm:py-28 lg:py-32 relative z-10 border-t border-slate-200/80 dark:border-white/5 bg-slate-50/40 dark:bg-[#070c14] light-tint-projects transition-colors">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div ref={headerRef} className={`text-center max-w-2xl mx-auto mb-16 space-y-3 reveal-init ${headerRevealed ? 'revealed' : ''}`}>
-          <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-mono uppercase tracking-wider text-violet-700 dark:text-cyber-violet bg-violet-50/90 dark:bg-cyber-violet/10 border border-violet-200 dark:border-cyber-violet/20 transition-colors shadow-sm shadow-violet-500/5">
-            <Trophy className="w-3.5 h-3.5 text-violet-600 dark:text-cyber-violet" />
-            <span>Verified Milestones</span>
+        <div ref={headerRef} className={`text-center max-w-2xl mx-auto mb-14 space-y-3 reveal-init ${headerRevealed ? 'revealed' : ''}`}>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md text-xs font-mono tracking-wider text-blue-700 dark:text-cyber-cyan bg-blue-50/90 dark:bg-dark-800/90 border border-blue-200/80 dark:border-cyber-cyan/30 shadow-xs transition-colors">
+            <span className="text-cyan-600 dark:text-cyber-cyan font-bold">07</span>
+            <span className="text-slate-400 dark:text-slate-600">/</span>
+            <span className="text-slate-700 dark:text-slate-300 font-semibold">ACHIEVEMENTS</span>
+            <span className="text-slate-300 dark:text-slate-700">|</span>
+            <span className="text-blue-600 dark:text-cyber-cyan">verified_milestones.manifest</span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-slate-900 dark:text-white tracking-tight transition-colors">
-            Key Achievements
+            Engineering Milestones
           </h2>
           <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base leading-relaxed transition-colors">
-            Quantified engineering outcomes and verified achievements documented in the resume.
+            Quantified engineering outcomes and verified achievements documented directly in the resume.
           </p>
         </div>
 
-        {/* Distinctive Cards Grid */}
-        <div ref={achievementsGridRef} className={`grid grid-cols-1 md:grid-cols-3 gap-7 items-stretch reveal-init ${achievementsGridRevealed ? 'revealed' : ''}`}>
-          {achievementsData.map((item) => {
-            const Icon = achievementIcons[item.icon] || Trophy;
-            const isFeatured = item.featured;
-            const isCyan = item.id === 'backend-team-lead';
-            const isIndigo = item.id === 'ai-coursework';
-
-            return (
-              <div
-                key={item.id}
-                className={`rounded-2xl p-7 flex flex-col justify-between hover:-translate-y-1 transition-all duration-300 relative group overflow-hidden ${
-                  isFeatured
-                    ? 'glass-card border-2 border-indigo-200/90 dark:border-indigo-500/40 bg-gradient-to-br from-white/95 via-indigo-50/30 to-blue-50/35 dark:from-dark-850 dark:to-indigo-950/20 shadow-xl shadow-indigo-500/10 hover:shadow-2xl hover:shadow-indigo-500/15'
-                    : isCyan
-                    ? 'glass-card border border-cyan-200/80 dark:border-white/5 bg-gradient-to-br from-white/95 via-cyan-50/20 to-blue-50/25 dark:bg-dark-900/60 hover:border-cyan-500/50 hover:shadow-xl hover:shadow-cyan-500/10'
-                    : 'glass-card border border-indigo-200/80 dark:border-white/5 bg-gradient-to-br from-white/95 via-violet-50/20 to-indigo-50/25 dark:bg-dark-900/60 hover:border-indigo-500/50 hover:shadow-xl hover:shadow-indigo-500/10'
-                }`}
-              >
-                {isFeatured && (
-                  <div className="absolute top-3 right-3 px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider bg-indigo-600 text-white dark:bg-indigo-500 dark:text-white shadow-sm shadow-indigo-500/20">
-                    Prominent
+        <div ref={achievementsGridRef} className={`space-y-6 reveal-init ${achievementsGridRevealed ? 'revealed' : ''}`}>
+          
+          {/* Prominent Featured Flagship: 500+ DSA Problems Solved */}
+          {featuredDSA && (
+            <div className="glass-card rounded-2xl overflow-hidden border-2 border-blue-400/40 dark:border-cyan-500/40 bg-white/95 dark:bg-[#0c121e]/95 shadow-xl shadow-cyan-500/10 transition-all font-mono">
+              <div className="h-1.5 w-full bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-400" />
+              
+              {/* Window Header */}
+              <div className="px-5 py-2.5 bg-slate-100/90 dark:bg-[#080d16] border-b border-slate-200 dark:border-white/10 flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-1.5">
+                    <span className="w-2.5 h-2.5 rounded-full bg-red-500/80 inline-block" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80 inline-block" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80 inline-block" />
                   </div>
-                )}
+                  <span className="text-xs font-bold text-slate-900 dark:text-white ml-1">
+                    dsa_benchmark.env
+                  </span>
+                </div>
+                <span className="px-2.5 py-0.5 rounded text-[10px] font-bold bg-cyan-100 text-cyan-900 dark:bg-cyan-950/70 dark:text-cyan-300 border border-cyan-300 dark:border-cyan-600/50 flex items-center gap-1">
+                  <Sparkles className="w-3 h-3 text-cyan-600 dark:text-cyan-400" />
+                  <span>FLAGSHIP_BENCHMARK</span>
+                </span>
+              </div>
 
-                <div className="space-y-4">
-                  {/* Icon & Subtitle */}
-                  <div className={`w-12 h-12 rounded-xl border flex items-center justify-center group-hover:scale-110 transition-transform ${
-                    isFeatured
-                      ? 'bg-indigo-50 dark:bg-white/5 border-indigo-200/80 dark:border-white/10 text-indigo-600 dark:text-cyan-400'
-                      : isCyan
-                      ? 'bg-cyan-50 dark:bg-white/5 border-cyan-200/80 dark:border-white/10 text-cyan-600 dark:text-cyan-400'
-                      : 'bg-indigo-50 dark:bg-white/5 border-indigo-200/80 dark:border-white/10 text-indigo-600 dark:text-indigo-400'
-                  }`}>
-                    <Icon className="w-6 h-6" />
+              {/* Main Content Body */}
+              <div className="p-6 sm:p-8 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                
+                {/* Big Metric Display */}
+                <div className="lg:col-span-5 space-y-3">
+                  <div className="text-xs text-cyan-600 dark:text-cyan-400 font-bold uppercase tracking-wider flex items-center gap-1.5">
+                    <Activity className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
+                    <span>ALGORITHMIC RIGOR</span>
                   </div>
 
-                  <div>
-                    <span className={`text-[11px] font-mono uppercase tracking-wider transition-colors ${
-                      isFeatured ? 'text-indigo-800 dark:text-cyan-300' : isCyan ? 'text-cyan-800 dark:text-cyan-300' : 'text-indigo-800 dark:text-indigo-300'
-                    }`}>
-                      {item.subtitle}
-                    </span>
-                    <h3 className={`text-xl font-display font-bold text-slate-900 dark:text-white mt-1 transition-colors ${
-                      isFeatured
-                        ? 'group-hover:text-indigo-700 dark:group-hover:text-cyan-300'
-                        : isCyan
-                        ? 'group-hover:text-cyan-700 dark:group-hover:text-cyan-300'
-                        : 'group-hover:text-indigo-700 dark:group-hover:text-indigo-300'
-                    }`}>
-                      {item.title}
-                    </h3>
+                  <div className="text-5xl sm:text-6xl font-bold font-mono text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-500 dark:from-white dark:via-cyan-200 dark:to-cyan-400">
+                    <AnimatedCounter value="500+" />
                   </div>
 
-                  {/* Highlight Stat */}
-                  <div className={`p-4 rounded-xl border space-y-0.5 transition-colors ${
-                    isFeatured
-                      ? 'bg-indigo-50/70 dark:bg-dark-950/70 border-indigo-200/80 dark:border-white/5 group-hover:border-indigo-500/40'
-                      : isCyan
-                      ? 'bg-cyan-50/70 dark:bg-dark-950/70 border-cyan-200/80 dark:border-white/5 group-hover:border-cyan-500/40'
-                      : 'bg-indigo-50/70 dark:bg-dark-950/70 border-indigo-200/80 dark:border-white/5 group-hover:border-indigo-500/40'
-                  }`}>
-                    <div className={`text-3xl font-display font-black text-transparent bg-clip-text ${
-                      isFeatured
-                        ? 'bg-gradient-to-r from-blue-600 via-indigo-600 to-violet-600 dark:from-blue-400 dark:via-indigo-400 dark:to-violet-400'
-                        : isCyan
-                        ? 'bg-gradient-to-r from-cyan-700 to-blue-600 dark:from-cyan-400 dark:to-blue-400'
-                        : 'bg-gradient-to-r from-indigo-700 to-violet-600 dark:from-indigo-400 dark:to-violet-400'
-                    }`}>
-                      <AnimatedCounter value={item.metric} />
-                    </div>
-                    <div className="text-xs text-slate-600 dark:text-slate-400 transition-colors font-medium">
-                      {item.metricSubtext}
-                    </div>
+                  <div className="text-sm font-semibold text-slate-800 dark:text-slate-200">
+                    Data Structure & Algorithm Problems Solved
                   </div>
 
-                  {/* Description */}
-                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed transition-colors">
-                    {item.description}
+                  <p className="font-sans text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                    {featuredDSA.description}
                   </p>
                 </div>
 
-                {/* Footer confirmation */}
-                <div className="mt-6 pt-4 border-t border-slate-200/80 dark:border-white/5 flex items-center justify-between text-[11px] font-mono text-slate-500 dark:text-slate-400 transition-colors">
-                  <span className="flex items-center gap-1.5 font-medium text-emerald-700 dark:text-emerald-400">
-                    <CheckCircle className="w-3.5 h-3.5" />
-                    Resume Supported
-                  </span>
-                  <span>Documented</span>
+                {/* Developer Console Code Box */}
+                <div className="lg:col-span-7 p-4 sm:p-5 rounded-xl bg-slate-100/90 dark:bg-dark-950/90 border border-slate-200 dark:border-white/10 space-y-2 text-xs">
+                  <div className="text-slate-500 pb-2 border-b border-slate-200 dark:border-white/5 flex items-center justify-between">
+                    <span>$ dsa --verify-profile</span>
+                    <span className="text-emerald-600 dark:text-emerald-400 flex items-center gap-1">
+                      <CheckCircle className="w-3 h-3" />
+                      <span>VERIFIED</span>
+                    </span>
+                  </div>
+
+                  <div className="space-y-1 text-slate-700 dark:text-slate-300">
+                    <div>&gt; target_metric: <strong className="text-slate-900 dark:text-white">500+ problems</strong></div>
+                    <div>&gt; platforms: <span className="text-cyan-600 dark:text-cyan-400">LeetCode, Codolio & coding platforms</span></div>
+                    <div>&gt; core_focus: <span className="text-slate-800 dark:text-slate-200">Data structures, algorithmic complexity, optimization</span></div>
+                    <div>&gt; problem_domains: <span className="text-slate-800 dark:text-slate-200">Arrays, Strings, Trees, Dynamic Programming, Graphs</span></div>
+                  </div>
+
+                  <div className="pt-2 flex flex-wrap gap-2">
+                    <span className="px-2 py-0.5 rounded text-[10px] bg-white dark:bg-dark-900 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-slate-300">
+                      Persistent Practice
+                    </span>
+                    <span className="px-2 py-0.5 rounded text-[10px] bg-white dark:bg-dark-900 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-slate-300">
+                      Algorithmic Complexity
+                    </span>
+                    <span className="px-2 py-0.5 rounded text-[10px] bg-white dark:bg-dark-900 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-slate-300">
+                      Competitive Programming
+                    </span>
+                  </div>
                 </div>
 
               </div>
-            );
-          })}
+
+              {/* Status Footer */}
+              <div className="px-6 py-2.5 bg-slate-50 dark:bg-[#080d16] border-t border-slate-200 dark:border-white/10 flex items-center justify-between text-[11px] text-slate-500">
+                <span>record_id: milestone_dsa-500</span>
+                <span className="text-emerald-600 dark:text-emerald-400 font-semibold">status: active_practice</span>
+              </div>
+            </div>
+          )}
+
+          {/* Secondary Achievements Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+            {otherAchievements.map((item) => {
+              const Icon = achievementIcons[item.icon] || Trophy;
+
+              return (
+                <div
+                  key={item.id}
+                  className="glass-card rounded-2xl flex flex-col justify-between overflow-hidden border border-slate-200/80 dark:border-white/10 bg-white/95 dark:bg-[#0c121e]/90 hover:border-cyan-500/40 shadow-lg transition-all duration-300 font-mono"
+                >
+                  <div className="h-1 w-full bg-gradient-to-r from-blue-500 via-indigo-500 to-cyan-400" />
+
+                  {/* Header */}
+                  <div className="px-5 py-2.5 bg-slate-100/80 dark:bg-[#080d16] border-b border-slate-200/80 dark:border-white/5 flex items-center justify-between">
+                    <div className="flex items-center gap-1.5">
+                      <span className="w-2 h-2 rounded-full bg-cyan-500/80 inline-block" />
+                      <span className="text-xs text-slate-600 dark:text-slate-400 ml-1">
+                        milestone_{item.id}.log
+                      </span>
+                    </div>
+                    <span className="text-[10px] text-slate-500">
+                      [ RECORD ]
+                    </span>
+                  </div>
+
+                  <div className="p-6 space-y-4">
+                    <div className="flex items-center justify-between">
+                      <div className="w-10 h-10 rounded-xl border border-blue-200/80 dark:border-blue-800/40 bg-blue-50 dark:bg-blue-950/40 text-blue-600 dark:text-cyan-400 flex items-center justify-center shrink-0">
+                        <Icon className="w-5 h-5" />
+                      </div>
+                      <div className="text-2xl font-bold text-blue-600 dark:text-cyan-400 font-mono">
+                        <AnimatedCounter value={item.metric} />
+                      </div>
+                    </div>
+
+                    <div>
+                      <div className="text-[11px] text-cyan-600 dark:text-cyan-400 font-semibold uppercase">
+                        // {item.subtitle}
+                      </div>
+                      <h3 className="text-lg font-display font-bold text-slate-900 dark:text-white mt-0.5">
+                        {item.title}
+                      </h3>
+                    </div>
+
+                    <p className="font-sans text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                      {item.description}
+                    </p>
+                  </div>
+
+                  <div className="px-6 py-2.5 bg-slate-50/70 dark:bg-dark-950/60 border-t border-slate-200/80 dark:border-white/5 flex items-center justify-between text-[11px] text-slate-500">
+                    <span className="flex items-center gap-1 text-emerald-600 dark:text-emerald-400 font-medium">
+                      <CheckCircle className="w-3 h-3" />
+                      <span>verified_outcome</span>
+                    </span>
+                    <span>{item.metricSubtext}</span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
         </div>
 
       </div>

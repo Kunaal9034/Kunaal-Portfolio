@@ -56,6 +56,12 @@ export default function BackgroundCanvas() {
     window.addEventListener('resize', handleResize);
 
     const render = () => {
+      // When modal is open, pause canvas drawing to free CPU/GPU and eliminate backdrop-blur recalculation
+      if (document.body.classList.contains('modal-open')) {
+        animationFrameId = requestAnimationFrame(render);
+        return;
+      }
+
       ctx.clearRect(0, 0, width, height);
 
       const isDark = document.documentElement.classList.contains('dark');
